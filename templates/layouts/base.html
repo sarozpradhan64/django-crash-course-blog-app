@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blog Application</title>
+
+        <style>
+            *{
+                margin:0;
+                padding:0;
+            }
+
+            .container{
+                width: 90%;
+                margin:0 auto;
+            }
+
+            nav {
+                margin:16px 0;
+            }
+          
+            nav li {
+                color: black;
+                display: inline;
+                margin: 0 32px;
+                font-size: 18px;
+                font-weight: 600;
+                cursor: pointer;
+            }
+
+            nav li a{
+                color: inherit !important;
+                text-decoration: none !important;
+            }
+
+            nav li:hover{
+                color: blue;
+            }
+
+            .content{
+                min-height: 600px;
+            }
+
+            .page-title {
+                font-size: 32px;
+                margin-bottom: 16px;
+                text-align: center;
+            }
+
+
+            .card-container {
+                margin-top:32px;
+                display: flex;
+                gap:16px;
+            }
+            .card {
+                border:1px solid gray;
+                padding: 16px;
+                border-radius: 8px;
+            }
+            .card-image{
+                width: 200px;
+                height: 300px;
+            }
+            .card-title {
+                font-size: 18px;
+                font-weight: 600;
+                margin-bottom: 8px;
+            }
+            .card-text {
+                font-size: 14px;
+                color: rgb(75, 74, 74)
+            }
+
+            footer .logo{
+                color: red;
+            }
+        </style>
+    </head>
+
+    <body class="container">
+        <header>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="{% url 'home' %}">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'blog' %}">
+                        Blogs
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'about-us' %}">
+                            About us
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'contact-us' %}">
+                        Contact us
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+
+        <main class="content">
+            {% block content %}
+
+            {% endblock %}
+        </main>
+
+
+        <footer>
+            <h3 class="logo">Django Blog</h3>
+        </footer>
+    </body>
+
+</html>

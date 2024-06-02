@@ -1,0 +1,9 @@
+
+__pycache__/
+*/__pycache__/*
+*/*/__pycache__/*
+db.sqlite3
+media
+static/images/
+error.log
+.env
