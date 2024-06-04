@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
-# Create your views here.
+from .models import Blog
 
 def home(request):
     title = "Django Blog App!"
@@ -14,17 +13,21 @@ def home(request):
       1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more 
       recently with desktop publishing software like Aldus PageMaker including versions of
         Lorem Ipsum."""
-    
-    books = [
-        {"title": "Python Distilled", "author": "David M. Beazley", "year": 2021, "image": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSYckNTsPiXcSpBOYT7EhvgQKRT18gHNvhQ0c4WFB4POtzw7eOT"},
-        {"title": "Fluent Python", "author": "Luciano Ramalho", "year": 2015, "image": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSHhzQJ0u-i63IdIfkFzMiUEt9yfKZ1GCjseF2H3vPYuBewOwF-"},
-        {"title": "Automate the Boring Study", "author": "Al Sweigart", "year": 2019, "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqVjJPD-A1Sizgt6wKJMeEzLg8B33d_o5HeS4GA9aYbV8an7EF"},
-    ]
-
-    return render(request, 'index.html', {"title":title, "paragraph": paragraph, 'books':books})
+    # blogs = Blog.objects.all()
+    featured_blogs = Blog.objects.filter(status="published", is_featured = True)
+    return render(request, 'index.html', {"title":title, "paragraph": paragraph, 'featured_blogs': featured_blogs })
     
 def blog(request):
-    return render(request, 'blog.html')
+    title = "My blog"
+    paragraph = "Please read my blogs, all of those are intresting ones."
+
+    blogs = Blog.objects.filter(status = "published")
+    return render(request, 'blog.html', {'title':title, 'paragraph': paragraph, 'blogs' : blogs })
+
+
+def blogDetail(request, blog_id):
+    blog = Blog.objects.filter(id=blog_id).first()
+    return render(request, 'blog_detail.html', {"blog": blog})
 
 def aboutUs(request):
     return render(request, 'about-us.html')

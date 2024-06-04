@@ -2,6 +2,23 @@
 
 {% block content %}
 
-<h1>This is my blog page</h1>
+<h1 class="page-title">{{ title }}</h1>
+<p class="page-paragraph">{{ paragraph }}</p>
+
+<br/>
+<div class="card-container">
+{% for blog in blogs %}
+
+    <div class="card">
+        <h5 class="card-title">Blog Title: {{ blog.title }}</h5>
+        <p class="card-text">Author: {{blog.author}}, Date: {{ blog.publish_date }} </p>
+        <p class="card-info">{{ blog.content | truncatewords:20 }}</p>
+
+        <button class="card-button">Read More</button>
+    </div>
+
+
+{% endfor %}
+</div>
 
 {% endblock %}

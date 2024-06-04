@@ -3,16 +3,21 @@
 {% block content %}
 
 <h1 class="page-title">{{ title }}</h1>
-<p>{{ paragraph }}</p>
+<p class="page-paragraph">{{ paragraph }}</p>
+
+<br/>
+<br/>
 
 
 <!-- using loop -->
+<h3>Featured Blogs</h3>
 <div class="card-container">
-{% for book in books %}
+{% for blog in featured_blogs %}
     <div class="card">
-        <img class="card-image" src="{{ book.image }}" />
-        <h5 class="card-title">Book Title: {{ book.title }}</h5>
-        <p class="card-text">Author: {{ book.author }} | Year: {{book.year}}</p>
+        <h5 class="card-title">blog Title: {{ blog.title }}</h5>
+        <p class="card-text">Author: {{ blog.author }} , Date: {{ blog.publish_date }}</p>
+        <p class="card-info">{{ blog.content | truncatewords:20 }}</p>
+        <a href="{% url 'blog-detail' blog.id %}" class="card-button">Read More</a>
     </div>
 {% endfor %}
 </div>
