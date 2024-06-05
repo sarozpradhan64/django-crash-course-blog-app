@@ -10,11 +10,15 @@
 {% for blog in blogs %}
 
     <div class="card">
-        <h5 class="card-title">Blog Title: {{ blog.title }}</h5>
+        <h5 class="card-title">
+            <a href="{% url 'blog-detail' blog.id %}">
+                Blog Title: {{ blog.title }}
+            </a>
+        </h5>
         <p class="card-text">Author: {{blog.author}}, Date: {{ blog.publish_date }} </p>
         <p class="card-info">{{ blog.content | truncatewords:20 }}</p>
 
-        <button class="card-button">Read More</button>
+        <a href="{% url 'blog-detail' blog.id %}" class="card-button">Read More</a>
     </div>
 
 

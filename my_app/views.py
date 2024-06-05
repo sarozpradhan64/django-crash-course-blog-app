@@ -26,8 +26,11 @@ def blog(request):
 
 
 def blogDetail(request, blog_id):
-    blog = Blog.objects.filter(id=blog_id).first()
-    return render(request, 'blog_detail.html', {"blog": blog})
+    blog = Blog.objects.filter(status = 'published', id=blog_id).first() #first() return single object.
+    related_blogs = Blog.objects.filter(status = 'published').exclude(id = blog.id)
+
+
+    return render(request, 'blog_detail.html', {"blog": blog, 'related_blogs': related_blogs})
 
 def aboutUs(request):
     return render(request, 'about-us.html')
