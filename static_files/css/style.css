@@ -129,6 +129,36 @@ nav li:hover {
     margin: auto;
 }
 
+.contact-container {
+    width: 40%;
+    margin:auto;
+    border:1px solid gray;
+    border-radius: 8px;
+    padding:20px;
+}
+
+.form-group {
+    margin:8px 0;
+}
+ input:not([type='radio']),  textarea {
+    display: block;
+    padding:5px;
+    width:100%;
+    border-radius:6px;
+}
+
+.register-button {
+    padding:8px 12px;
+    border-radius: 4px;
+    background-color: rgb(79, 79, 227);
+    border: 1px solid rgb(79, 79, 227);
+    color: #fff;
+}
+
+.errorlist {
+    color: red;
+}
+
 footer .logo {
     color: red;
 }

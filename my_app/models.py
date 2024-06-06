@@ -16,3 +16,15 @@ class Blog(models.Model):
     class Meta:
         ordering = ["id"]
 
+
+class ContactUs(models.Model):
+    full_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    mobile = models.CharField(max_length=15)
+    message = models.TextField()
+
+    def __str__(self):
+        return "New message from "+self.full_name
+
+    class Meta:
+        verbose_name_plural = "Contact Us"

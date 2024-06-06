@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Blog
+from .models import Blog, ContactUs
+from .forms import ContactUsForm
+from django.urls import reverse
 
 def home(request):
     title = "Django Blog App!"
@@ -37,4 +39,24 @@ def aboutUs(request):
 
 
 def contactUs(request):
-    return render(request, 'contact-us.html')
+    if request.method == "POST":
+        form = ContactUsForm(data=request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('home'))
+
+        # full_name = request.POST.get('full_name')
+        # email = request.POST.get('email')
+        # mobile = request.POST.get('mobile')
+        # message = request.POST.get('message')
+
+        # if full_name and email and mobile and message:
+        #     new_contact = ContactUs(full_name=full_name, email = email, mobile = mobile, message = message)
+        #     new_contact.save()
+        # else:
+        #     return HttpResponse("<h1>Some value is missing</h1>")
+    
+    else:
+        form = ContactUsForm()
+    return render(request, 'contact-us.html', {'form':form})
